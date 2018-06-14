@@ -15,6 +15,10 @@ public class RoomStore implements Iterable<Room> {
         this.rooms.put(lastRoomNumber, new Room(lastRoomNumber));
     }
 
+    public Room getRoom(int id) {
+        return this.rooms.get(id);
+    }
+
     @Override
     public Iterator<Room> iterator() {
         return rooms.values().iterator();

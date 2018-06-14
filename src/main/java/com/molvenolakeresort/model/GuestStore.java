@@ -6,13 +6,21 @@ import java.util.Map;
 
 public class GuestStore implements Iterable<Guest> {
 
-    private static int lastGuestNumber = 0;
+    private static long lastGuestNumber = 0;
 
-    private Map<Integer, Guest> guests = new HashMap<>();
+    private Map<Long, Guest> guests = new HashMap<>();
 
-    public void addGuest(String name) {
+    public Guest addGuest(String name) {
         ++lastGuestNumber;
-        this.guests.put(lastGuestNumber, new Guest(name));
+        Guest insertedGuest = new Guest(name);
+        insertedGuest.setId(lastGuestNumber);
+        this.guests.put(lastGuestNumber, insertedGuest);
+
+        return insertedGuest;
+    }
+
+    public Guest getGuest(int id) {
+        return this.guests.get(id);
     }
 
     @Override

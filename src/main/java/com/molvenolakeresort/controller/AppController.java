@@ -1,5 +1,6 @@
 package com.molvenolakeresort.controller;
 
+import com.molvenolakeresort.model.Guest;
 import com.molvenolakeresort.model.Hotel;
 
 import java.util.Scanner;
@@ -36,9 +37,6 @@ public class AppController {
         return choice;
     }
 
-    private void quit() {
-        this.state = false;
-    }
 
     private void interpretedMenuChoice(int choice) throws InterruptedException {
         if( choice == 1 ) {
@@ -53,18 +51,43 @@ public class AppController {
             this.quit();
         }
     }
+    private void quit() {
+        this.state = false;
+    }
 
     private void checkInGuest() throws InterruptedException {
         System.out.println("What is the name of the guest?");
 
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        Scanner reader = new Scanner(System.in);
+        String name = reader.nextLine();
 
-        String answer = reader.nextLine(); // Scans the next token of the input as an int.
-        //once finished
-        this.hotel.addGuest(answer);
-        System.out.println(answer + " is checked into the Hotel!");
-        TimeUnit.SECONDS.sleep(2);
+        this.hotel.addGuest(name);
 
+        Guest guest = this.hotel.addGuest(name);
 
+        System.out.println(name + " is checked into the Hotel!");
+        TimeUnit.SECONDS.sleep(1);
+
+        System.out.println("What is the birth year of " + name + "?");
+        int year = reader.nextInt();
+
+        System.out.println("In which month is " + name + " born?");
+        int month = reader.nextInt();
+
+        System.out.println("On what day is " + name + " born?");
+        int day = reader.nextInt();
+
+        guest.setDateOfBirth(year, month, day);
+
+        System.out.println("Okay, so " + name + "'s birth day of " + day + "-" + month + "-" + year + " is in the system, thanks!");
+
+        System.out.println("Now let's set " + name + " with a room..");
+
+        System.out.println("In what room number would you like to book " + name + "?");
+        int roomNumber = reader.nextInt();
+
+        hotel.checkInGuest(guest, hotel.getRoom(roomNumber));
+        System.out.println(name + " is checked in in room " + roomNumber + "!");
+        TimeUnit.SECONDS.sleep(1);
     }
 }

@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 public class Guest {
 
+    private long id;
+
     private String name;
     private LocalDate dateOfBirth;
 
@@ -15,7 +17,7 @@ public class Guest {
 
     public String toString() {
 
-        return "Guest: " + this.name;
+        return this.name;
     }
 
     public String getName() {
@@ -28,5 +30,14 @@ public class Guest {
 
     public void setDateOfBirth(int year, int month, int dayOfMonth) {
         this.dateOfBirth = LocalDate.of(year, month, dayOfMonth);
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

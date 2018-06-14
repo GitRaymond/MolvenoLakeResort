@@ -7,6 +7,7 @@ public class Hotel {
     // array van bookings
     private RoomStore rooms = new RoomStore();
     private GuestStore guests = new GuestStore();
+    private CheckInStore checkIns = new CheckInStore();
 
     public Hotel() {
 
@@ -15,12 +16,20 @@ public class Hotel {
         }
 
     }
-    public void addGuest(String name) {
-        this.guests.addGuest(name);
+    public Guest addGuest(String name) {
+        return this.guests.addGuest(name);
+    }
+
+    public Guest getGuest(int id) {
+
+        return this.guests.getGuest(id);
     }
 
     public void createRoom() {
         this.rooms.createRoom();
+    }
+    public Room getRoom(int id) {
+        return this.rooms.getRoom(id);
     }
 
     public void showAllRooms() {
@@ -33,7 +42,9 @@ public class Hotel {
         for ( Guest guest:this.guests) {
             System.out.println(guest);
         }
-
+    }
+    public void checkInGuest(Guest g, Room r) {
+        this.checkIns.checkIn(g, r);
     }
 
 
