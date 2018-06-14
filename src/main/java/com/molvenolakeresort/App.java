@@ -2,21 +2,30 @@ package com.molvenolakeresort;
 
 import com.molvenolakeresort.model.Hotel;
 
+
+
 /**
  * Hello world!
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
-        Hotel molvenoLakeResort = new Hotel();
+        Hotel hotel = new Hotel();
 
+        hotel.showAllRooms();
 
-        for (int i = 0; i < molvenoLakeResort.store.rooms.size(); i++) {
-            System.out.println(molvenoLakeResort.store.rooms.get(i+1));
+        int i = 0;
+        while (i < 5) {
+            hotel.interpretedMenuChoice(hotel.mainMenu());
+            i++;
         }
 
 
     }
+
+
+
+
 }
