@@ -1,12 +1,13 @@
 package com.molvenolakeresort.model;
 
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+
 
 public class Guest {
 
     private String name;
-    private GregorianCalendar dateOfBirth;
+    private LocalDate dateOfBirth;
 
     public Guest(String name) {
         this.name = name;
@@ -21,11 +22,11 @@ public class Guest {
         return name;
     }
 
-    public GregorianCalendar getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return this.dateOfBirth;
     }
 
     public void setDateOfBirth(int year, int month, int dayOfMonth) {
-        this.dateOfBirth = new GregorianCalendar(year, month, dayOfMonth);
+        this.dateOfBirth = LocalDate.of(year, month, dayOfMonth);
     }
 }
