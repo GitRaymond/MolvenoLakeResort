@@ -1,53 +1,39 @@
 package com.molvenolakeresort.model;
 
-import java.util.Scanner;
-
 public class Hotel {
 
+    private final int NUMBER_OF_ROOMS = 20;
     // array van rooms
     // array van bookings
-    public Store store;
+    private RoomStore rooms = new RoomStore();
+    private GuestStore guests = new GuestStore();
 
     public Hotel() {
 
-        this.store = new Store();
-
-        int numberOfRooms = 20;
-
-        for( int i = 0; i < numberOfRooms ; i++) {
-            store.addRoom();
+        for( int i = 0; i < NUMBER_OF_ROOMS  ; i++) {
+            rooms.createRoom();
         }
 
     }
-
-    public int mainMenu() {
-        System.out.println("What would you like to do?");
-        System.out.println("1: Create a room");
-        System.out.println("2: Show all rooms");
-
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
-
-        int choice = reader.nextInt(); // Scans the next token of the input as an int.
-        //once finished
-
-//        reader.close();
-
-        return choice;
+    public void addGuest(String name) {
+        this.guests.addGuest(name);
     }
 
-    public void interpretedMenuChoice(int choice) {
-        if( choice == 1 ) {
-
-            this.store.addRoom();
-        } else if ( choice == 2 ){
-            this.showAllRooms();
-        }
+    public void createRoom() {
+        this.rooms.createRoom();
     }
 
     public void showAllRooms() {
-        for (int i = 0; i < this.store.rooms.size(); i++) {
-            System.out.println(this.store.rooms.get(i+1));
+        for ( Room room:this.rooms) {
+            System.out.println(room);
         }
+    }
+
+    public void showAllGuests() {
+        for ( Guest guest:this.guests) {
+            System.out.println(guest);
+        }
+
     }
 
 

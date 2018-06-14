@@ -1,5 +1,6 @@
 package com.molvenolakeresort;
 
+import com.molvenolakeresort.controller.AppController;
 import com.molvenolakeresort.model.Hotel;
 
 
@@ -10,17 +11,14 @@ import com.molvenolakeresort.model.Hotel;
  */
 public class App
 {
-    public static void main( String[] args )
-    {
-        Hotel hotel = new Hotel();
 
-        hotel.showAllRooms();
 
-        int i = 0;
-        while (i < 5) {
-            hotel.interpretedMenuChoice(hotel.mainMenu());
-            i++;
-        }
+    public static void main( String[] args ) throws InterruptedException {
+        AppController app = new AppController();
+
+        app.run();
+
+
 
 
     }
