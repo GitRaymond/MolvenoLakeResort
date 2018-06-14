@@ -1,12 +1,10 @@
 package com.molvenolakeresort;
 
 import com.molvenolakeresort.controller.AppController;
-import com.molvenolakeresort.model.Hotel;
-
 
 
 /**
- * Hello world!
+ * Molveno Lake Resort!
  *
  */
 public class App
