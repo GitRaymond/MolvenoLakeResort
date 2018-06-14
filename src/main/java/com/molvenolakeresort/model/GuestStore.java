@@ -17,7 +17,6 @@ public class GuestStore implements Iterable<Guest> {
 
     @Override
     public Iterator<Guest> iterator() {
-
         return guests.values().iterator();
     }
 }
