@@ -12,7 +12,7 @@ public class Guest {
     private LocalDate dateOfBirth;
 
     public Guest(String name) {
-        this.name = name;
+        this.setName(name);
     }
 
     public String toString() {
@@ -22,6 +22,10 @@ public class Guest {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getDateOfBirth() {
