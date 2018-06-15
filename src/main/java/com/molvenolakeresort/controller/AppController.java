@@ -55,6 +55,7 @@ public class AppController {
         }
     }
     private void quit() {
+        System.out.println("Thank you for using this application!");
         this.state = false;
     }
 
