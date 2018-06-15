@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class CheckInStore implements Iterable<Room> {
+public class CheckInStore implements Iterable<Map.Entry<Guest, Room>> {
     // better make this < Int , Int > and add id's of guest and room's
     private Map<Guest, Room> checkIns = new HashMap<>();
 
@@ -15,7 +15,7 @@ public class CheckInStore implements Iterable<Room> {
         checkIns.remove(g);
     }
     @Override
-    public Iterator<Room> iterator() {
-        return checkIns.values().iterator();
+    public Iterator<Map.Entry<Guest, Room>> iterator() {
+        return checkIns.entrySet().iterator();
     }
 }

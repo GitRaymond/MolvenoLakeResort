@@ -19,7 +19,7 @@ public class GuestStore implements Iterable<Guest> {
         return insertedGuest;
     }
 
-    public Guest getGuest(int id) {
+    public Guest getGuest(long id) {
         return this.guests.get(id);
     }
 

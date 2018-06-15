@@ -1,5 +1,8 @@
 package com.molvenolakeresort.model;
 
+import java.util.Iterator;
+import java.util.Map;
+
 public class Hotel {
 
     private final int NUMBER_OF_ROOMS = 20;
@@ -45,6 +48,14 @@ public class Hotel {
     }
     public void checkInGuest(Guest g, Room r) {
         this.checkIns.checkIn(g, r);
+    }
+
+    public void showGuestsInRooms() {
+        Iterator<Map.Entry<Guest, Room>> entries = this.checkIns.iterator();
+        while (entries.hasNext()) {
+            Map.Entry<Guest, Room> entry = entries.next();
+            System.out.println("[GUEST] " + entry.getKey() + ", is checked in [ROOM] " + entry.getValue());
+        }
     }
 
 

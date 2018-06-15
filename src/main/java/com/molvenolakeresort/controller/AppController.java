@@ -23,8 +23,9 @@ public class AppController {
         System.out.println("What would you like to do?");
         System.out.println("1: Create a room");
         System.out.println("2: Show all rooms");
-        System.out.println("3: Create a guest");
+        System.out.println("3: Check in guest");
         System.out.println("4: Show all guests");
+        System.out.println("5: Show guests in room");
         System.out.println("9: Exit");
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
@@ -47,6 +48,8 @@ public class AppController {
             this.checkInGuest();
         } else if ( choice == 4 ) {
             hotel.showAllGuests();
+        } else if ( choice == 5 ) {
+            hotel.showGuestsInRooms();
         } else if ( choice == 9 ) {
             this.quit();
         }
