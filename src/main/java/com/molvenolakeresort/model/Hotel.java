@@ -1,5 +1,6 @@
 package com.molvenolakeresort.model;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -33,6 +34,10 @@ public class Hotel {
     }
     public Room getRoom(int id) {
         return this.rooms.getRoom(id);
+    }
+
+    public Map<Integer, Room> getRooms() {
+        return this.rooms.getRooms();
     }
 
     public void showAllRooms() {

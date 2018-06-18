@@ -19,6 +19,10 @@ public class RoomStore implements Iterable<Room> {
         return this.rooms.get(id);
     }
 
+    public Map<Integer, Room> getRooms() {
+        return this.rooms;
+    }
+
     @Override
     public Iterator<Room> iterator() {
         return rooms.values().iterator();

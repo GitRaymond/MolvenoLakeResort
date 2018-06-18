@@ -1,5 +1,6 @@
 package com.molvenolakeresort.controller;
 
+import com.molvenolakeresort.helper.InputRetriever;
 import com.molvenolakeresort.model.Guest;
 import com.molvenolakeresort.model.Hotel;
 
@@ -36,7 +37,7 @@ public class AppController {
 
     private void showMainMenu() {
         System.out.println("What would you like to do?");
-        
+
         for (Map.Entry<Integer, String> menuChoicePair : this.mainMenuChoices.entrySet()){
             System.out.println(menuChoicePair.getKey() + ": " + menuChoicePair.getValue());
         }
@@ -91,10 +92,9 @@ public class AppController {
     private void checkInGuest() throws InterruptedException {
         System.out.println("What is the name of the guest?");
 
-        Scanner reader = new Scanner(System.in);
-        String name = reader.nextLine();
+        InputRetriever ir = new InputRetriever();
 
-        this.hotel.addGuest(name);
+        String name = ir.retrieveName();
 
         Guest guest = this.hotel.addGuest(name);
 
@@ -102,22 +102,20 @@ public class AppController {
         TimeUnit.SECONDS.sleep(1);
 
         System.out.println("What is the birth year of " + name + "?");
-        int year = reader.nextInt();
+        int year = ir.retrieveValidBirthYear();
 
         System.out.println("In which month is " + name + " born?");
-        int month = reader.nextInt();
+        int month = ir.retrieveValidMonth();
 
         System.out.println("On what day is " + name + " born?");
-        int day = reader.nextInt();
+        int day = ir.retrieveValidDay(year, month);
 
         guest.setDateOfBirth(year, month, day);
 
         System.out.println("Okay, so " + name + "'s birth day of " + day + "-" + month + "-" + year + " is in the system, thanks!");
-
         System.out.println("Now let's set " + name + " with a room..");
-
         System.out.println("In what room number would you like to book " + name + "?");
-        int roomNumber = reader.nextInt();
+        int roomNumber = ir.retrieveValidRoomNumber(hotel.getRooms());
 
         hotel.checkInGuest(guest, hotel.getRoom(roomNumber));
         System.out.println(name + " is checked in in room " + roomNumber + "!");
