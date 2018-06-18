@@ -36,12 +36,11 @@ public class AppController {
 
     private void showMainMenu() {
         System.out.println("What would you like to do?");
-        Iterator it = this.mainMenuChoices.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            System.out.println(pair.getKey() + ": " + pair.getValue());
-
+        
+        for (Map.Entry<Integer, String> menuChoicePair : this.mainMenuChoices.entrySet()){
+            System.out.println(menuChoicePair.getKey() + ": " + menuChoicePair.getValue());
         }
+
     }
 
     private int getMenuChoice() {
