@@ -3,7 +3,7 @@ package com.molvenolakeresort.controller;
 import com.molvenolakeresort.model.Guest;
 import com.molvenolakeresort.model.Hotel;
 
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class AppController {
@@ -11,6 +11,12 @@ public class AppController {
     private Hotel hotel = new Hotel();
 
     private boolean state = true;
+
+    private Map<Integer, String> mainMenuChoices = new HashMap<>();
+
+    public AppController(){
+        this.fillMenuChoices();
+    }
 
     public void run() throws InterruptedException {
 
@@ -20,20 +26,43 @@ public class AppController {
     }
 
     private int mainMenu() {
+
+        this.showMainMenu();
+
+        int choice = this.getMenuChoice();
+
+        return choice;
+    }
+
+    private void showMainMenu() {
         System.out.println("What would you like to do?");
-        System.out.println("1: Create a room");
-        System.out.println("2: Show all rooms");
-        System.out.println("3: Check in guest");
-        System.out.println("4: Show all guests");
-        System.out.println("5: Show guests in room");
-        System.out.println("9: Exit");
+        Iterator it = this.mainMenuChoices.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            System.out.println(pair.getKey() + ": " + pair.getValue());
 
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        }
+    }
 
-        int choice = reader.nextInt(); // Scans the next token of the input as an int.
-        //once finished
+    private int getMenuChoice() {
+        Boolean valid = false;
+        int choice = 0;
 
-//        reader.close();
+        do {
+            try {
+                Scanner reader = new Scanner(System.in);
+                choice = reader.nextInt();
+                if (this.mainMenuChoices.containsKey(choice)) {
+                    valid = true;
+                } else {
+                    System.out.println("That choice is not in the menu");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Input must be a number... ");
+
+            }
+        } while (!valid);
 
         return choice;
     }
@@ -54,6 +83,7 @@ public class AppController {
             this.quit();
         }
     }
+
     private void quit() {
         System.out.println("Thank you for using this application!");
         this.state = false;
@@ -94,4 +124,19 @@ public class AppController {
         System.out.println(name + " is checked in in room " + roomNumber + "!");
         TimeUnit.SECONDS.sleep(1);
     }
+
+//    ----------------------------------------------
+//    HELPERS
+//    ----------------------------------------------
+
+    private void fillMenuChoices() {
+        this.mainMenuChoices.put(1, "Create a room");
+        this.mainMenuChoices.put(2, "Show all rooms");
+        this.mainMenuChoices.put(3, "Check in guest");
+        this.mainMenuChoices.put(4, "Show all guests");
+        this.mainMenuChoices.put(5, "Show guests in rooms");
+        this.mainMenuChoices.put(9, "Exit");
+
+    }
+
 }
